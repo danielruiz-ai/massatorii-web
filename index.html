@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Massatorii — Cualificación y agendado automático de leads con IA</title>
-<meta name="description" content="Massatorii cualifica y agenda tus leads automáticamente con IA, sin importar por dónde te escriban ni el sector en el que operes.">
+<meta name="description" content="Massatorii responde, cualifica y agenda a tus leads con IA en cualquier canal — Instagram, WhatsApp o web — y registra cada conversación en tu panel con métricas semanales.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -16,48 +16,66 @@
     --text:#EDEFF2;
     --text-dim:#8B93A1;
     --accent:#4FD1C5;
+    --accent-dim:rgba(79,209,197,0.12);
     --accent-dark:#04211F;
     --border:rgba(237,239,242,0.08);
     --border-strong:rgba(237,239,242,0.15);
+    --warn:#E8B355;
+    --danger:#E8695A;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation:none !important;transition:none !important;} }
   body{
     background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;
     line-height:1.6;-webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
   a{color:inherit;}
+  ::selection{background:var(--accent);color:var(--accent-dark);}
 
-  header{padding:24px 0;border-bottom:1px solid var(--border);}
+  /* Header */
+  header{padding:20px 0;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,14,20,0.85);backdrop-filter:blur(10px);z-index:50;}
   header .wrap{display:flex;justify-content:space-between;align-items:center;}
   .logo{font-family:'Baloo 2',sans-serif;font-size:22px;font-weight:700;letter-spacing:0.01em;}
-  nav a{font-size:14px;color:var(--text-dim);text-decoration:none;margin-left:32px;transition:color 0.15s ease;}
+  nav{display:flex;align-items:center;gap:28px;}
+  nav a{font-size:14px;color:var(--text-dim);text-decoration:none;transition:color 0.15s ease;}
   nav a:hover{color:var(--text);}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-dark);font-weight:600;font-size:13.5px;
+    padding:9px 18px;border-radius:6px;text-decoration:none;
+  }
+  .nav-links{display:flex;gap:28px;}
+  @media (max-width:760px){ .nav-links{display:none;} }
 
-  .hero{padding:88px 0 64px;text-align:center;}
+  /* Hero */
+  .hero{padding:80px 0 56px;text-align:center;}
   .eyebrow{
     font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);
     font-weight:600;margin-bottom:20px;display:inline-block;
   }
   h1{
-    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,4.4vw,48px);
-    line-height:1.12;letter-spacing:-0.02em;margin:0 auto 20px;max-width:720px;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,4.4vw,50px);
+    line-height:1.14;letter-spacing:-0.02em;margin:0 auto 20px;max-width:760px;
   }
   h1 span{color:var(--accent);}
-  .lede{font-size:18px;color:var(--text-dim);max-width:500px;margin:0 auto 32px;}
-  .cta-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .lede{font-size:18px;color:var(--text-dim);max-width:560px;margin:0 auto 32px;}
+  .cta-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:20px;}
   .btn-primary{
     background:var(--accent);color:var(--accent-dark);font-weight:600;font-size:15px;
-    padding:14px 28px;border-radius:6px;text-decoration:none;display:inline-block;
+    padding:14px 28px;border-radius:6px;text-decoration:none;display:inline-block;border:none;cursor:pointer;
     transition:transform 0.15s ease, box-shadow 0.15s ease;
   }
   .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(79,209,197,0.2);}
+  .btn-primary:focus-visible, .btn-secondary:focus-visible, a:focus-visible, summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
   .btn-secondary{color:var(--text);font-size:15px;text-decoration:none;font-weight:500;border-bottom:1px solid var(--border-strong);padding-bottom:2px;}
+  .trust-line{font-size:13px;color:var(--text-dim);}
+  .trust-line b{color:var(--text);font-weight:600;}
 
+  /* Flow diagram */
   .flow{
     background:var(--bg-raised);border:1px solid var(--border);border-radius:16px;
-    padding:44px 24px;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin-bottom:96px;
+    padding:44px 24px;display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin-bottom:88px;
   }
   .flow-channels{display:flex;flex-direction:column;gap:12px;}
   .chip{
@@ -77,31 +95,135 @@
   .result-card p.label{font-size:11px;color:var(--text-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em;}
   .result-card p.value{font-size:15px;font-weight:500;}
 
+  /* Generic sections */
   section{padding:0 0 96px;}
   .section-head{margin-bottom:36px;}
-  h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.01em;}
   .section-head.center{text-align:center;}
-  .section-head.center h2{max-width:560px;margin:0 auto 12px;}
-  .section-head.center p{font-size:14.5px;color:var(--text-dim);max-width:480px;margin:0 auto;}
+  .section-head.center h2{max-width:600px;margin:0 auto 12px;}
+  .section-head.center p{font-size:14.5px;color:var(--text-dim);max-width:520px;margin:0 auto;}
+  h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:-0.01em;}
 
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease, transform 0.5s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* Qué hace: cards */
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   .card{background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;padding:28px;}
   .card .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--accent);margin-bottom:16px;display:block;}
   .card h3{font-size:17px;font-weight:600;margin-bottom:10px;}
   .card p{font-size:14px;color:var(--text-dim);}
 
+  /* Cómo funciona: timeline */
+  .timeline{display:flex;flex-direction:column;gap:0;max-width:720px;margin:0 auto;}
+  .tl-step{display:flex;gap:24px;padding-bottom:36px;position:relative;}
+  .tl-step:last-child{padding-bottom:0;}
+  .tl-step::before{
+    content:'';position:absolute;left:23px;top:52px;bottom:0;width:1px;background:var(--border-strong);
+  }
+  .tl-step:last-child::before{display:none;}
+  .tl-marker{
+    flex:none;width:48px;height:48px;border-radius:50%;background:var(--bg-chip);border:1px solid var(--border-strong);
+    display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;
+    font-size:15px;color:var(--accent);z-index:1;
+  }
+  .tl-body{padding-top:6px;}
+  .tl-body h3{font-size:16.5px;font-weight:600;margin-bottom:6px;}
+  .tl-body p{font-size:14px;color:var(--text-dim);max-width:520px;}
+
+  /* Panel / CRM mockup */
+  .panel-mock{
+    background:var(--bg-raised);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  }
+  .panel-mock-head{
+    display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid var(--border);
+  }
+  .panel-mock-head .dots{display:flex;gap:6px;}
+  .panel-mock-head .dot{width:9px;height:9px;border-radius:50%;background:var(--bg-chip);border:1px solid var(--border-strong);}
+  .panel-mock-head .tag{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;}
+  .panel-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+  .metric-tile{background:var(--bg-raised);padding:22px;text-align:center;}
+  .metric-tile .val{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;color:var(--accent);}
+  .metric-tile .lbl{font-size:12px;color:var(--text-dim);margin-top:6px;}
+  .panel-table{padding:20px 22px 24px;}
+  .panel-table table{width:100%;border-collapse:collapse;font-size:13px;}
+  .panel-table th{text-align:left;color:var(--text-dim);font-weight:500;font-size:11.5px;text-transform:uppercase;letter-spacing:0.04em;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  .panel-table td{padding:12px 0;border-bottom:1px solid var(--border);}
+  .panel-table tr:last-child td{border-bottom:none;}
+  .pill{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:20px;display:inline-block;}
+  .pill.booking{background:rgba(79,209,197,0.15);color:var(--accent);}
+  .pill.cualif{background:rgba(232,179,85,0.15);color:var(--warn);}
+  .pill.nuevo{background:rgba(139,147,161,0.15);color:var(--text-dim);}
+  .panel-caption{font-size:12.5px;color:var(--text-dim);text-align:center;margin-top:14px;}
+
+  /* Proceso */
+  .process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .p-step{padding:24px 0;border-top:2px solid var(--accent);}
+  .p-step .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--accent);}
+  .p-step h3{font-size:15.5px;font-weight:600;margin:10px 0 8px;}
+  .p-step p{font-size:13.5px;color:var(--text-dim);}
+
+  /* Stats */
   .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
   .stat{background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center;}
   .stat .big{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;color:var(--accent);margin-bottom:8px;}
   .stat p{font-size:13.5px;color:var(--text-dim);}
 
+  /* Planes */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .plan{background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;padding:28px;display:flex;flex-direction:column;}
+  .plan.highlight{border-color:var(--accent);position:relative;}
+  .plan.highlight::before{
+    content:'Más elegido';position:absolute;top:-11px;left:28px;background:var(--accent);color:var(--accent-dark);
+    font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:0.02em;
+  }
+  .plan h3{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;margin-bottom:6px;}
+  .plan .tagline{font-size:13px;color:var(--text-dim);margin-bottom:20px;}
+  .plan ul{list-style:none;margin-bottom:24px;flex:1;}
+  .plan li{font-size:13.5px;color:var(--text-dim);padding:7px 0;padding-left:20px;position:relative;}
+  .plan li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700;}
+  .plan-cta{
+    text-align:center;font-size:14px;font-weight:600;padding:11px;border-radius:6px;text-decoration:none;
+    border:1px solid var(--border-strong);color:var(--text);transition:border-color 0.15s ease;
+  }
+  .plan.highlight .plan-cta{background:var(--accent);color:var(--accent-dark);border-color:var(--accent);}
+  .plan-cta:hover{border-color:var(--accent);}
+
+  /* FAQ */
+  .faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:1px;}
+  details{background:var(--bg-raised);border:1px solid var(--border);border-radius:10px;margin-bottom:10px;overflow:hidden;}
+  summary{
+    padding:18px 22px;font-size:15px;font-weight:500;cursor:pointer;list-style:none;position:relative;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:'+';font-size:20px;color:var(--accent);flex:none;transition:transform 0.2s ease;}
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{padding:0 22px 20px;font-size:14px;color:var(--text-dim);max-width:600px;}
+
+  /* Contacto */
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .contact-card{
+    background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;padding:26px;text-align:center;
+    text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:10px;transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .contact-card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .contact-card .icon{
+    width:44px;height:44px;border-radius:50%;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;
+    font-size:19px;
+  }
+  .contact-card h3{font-size:15.5px;font-weight:600;}
+  .contact-card p{font-size:13px;color:var(--text-dim);}
+  .contact-card.disabled{opacity:0.5;cursor:not-allowed;pointer-events:none;}
+
+  /* Footer */
   footer{padding:36px 0;border-top:1px solid var(--border);}
   footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
   footer p{font-size:13px;color:var(--text-dim);}
   footer a{color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;}
 
   @media (max-width:800px){
-    .cards, .stats{grid-template-columns:1fr;}
+    .cards, .stats, .process, .plans, .contact-grid{grid-template-columns:1fr;}
+    .panel-metrics{grid-template-columns:repeat(2,1fr);}
     .flow{flex-direction:column;gap:20px;}
     .connector{width:2px;height:32px;}
   }
@@ -113,9 +235,13 @@
   <div class="wrap">
     <div class="logo">massatorii</div>
     <nav>
-      <a href="#que-hace">Qué hace</a>
-      <a href="#sectores">Sectores</a>
-      <a href="#contacto">Contacto</a>
+      <div class="nav-links">
+        <a href="#que-hace">Qué hace</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#panel">Panel</a>
+        <a href="#planes">Planes</a>
+      </div>
+      <a class="nav-cta" href="#contacto">Contacto</a>
     </nav>
   </div>
 </header>
@@ -124,16 +250,17 @@
   <div class="wrap">
     <span class="eyebrow">Automatización de captación con IA</span>
     <h1>Cada lead recibe respuesta al instante. <span>En cualquier canal.</span></h1>
-    <p class="lede">Massatorii cualifica y agenda tus leads automáticamente con IA, sin importar por dónde te escriban ni el sector en el que operes.</p>
+    <p class="lede">Massatorii responde, cualifica y agenda a tus leads con IA — por Instagram, WhatsApp o web — y deja cada conversación registrada en tu panel, con métricas cada semana.</p>
     <div class="cta-row">
-      <a class="btn-primary" href="mailto:daniel.massatorii@gmail.com">Hablar con nosotros</a>
-      <a class="btn-secondary" href="#que-hace">Ver cómo funciona</a>
+      <a class="btn-primary" href="#contacto">Habla con nosotros</a>
+      <a class="btn-secondary" href="#como-funciona">Ver cómo funciona</a>
     </div>
+    <p class="trust-line">En producción con clientes reales en <b>fitness</b> e <b>inmobiliaria</b> · Respuesta en segundos, 24/7</p>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="flow">
+  <div class="flow reveal">
     <div class="flow-channels">
       <div class="chip">IG</div>
       <div class="chip">WA</div>
@@ -151,37 +278,120 @@
 
 <section id="que-hace">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Qué hace</span>
       <h2>Tres pasos, sin intervención humana</h2>
     </div>
-    <div class="cards">
+    <div class="cards reveal">
       <div class="card">
         <span class="num">01</span>
         <h3>Responde al instante</h3>
-        <p>En el mismo canal por el que te escriben, texto o voz, a cualquier hora del día.</p>
+        <p>En el mismo canal por el que te escriben — texto o nota de voz — a cualquier hora del día, sin ventanas muertas de horario de oficina.</p>
       </div>
       <div class="card">
         <span class="num">02</span>
         <h3>Cualifica en conversación</h3>
-        <p>Preguntas adaptadas a tu negocio, con tono natural, sin parecer un formulario.</p>
+        <p>Preguntas adaptadas a tu negocio (necesidad, presupuesto, urgencia...), con tono natural — nadie siente que está rellenando un formulario.</p>
       </div>
       <div class="card">
         <span class="num">03</span>
         <h3>Agenda o traspasa</h3>
-        <p>Cita agendada o traspaso al miembro adecuado del equipo, con todo el contexto ya recogido.</p>
+        <p>Cita agendada directamente en tu calendario, o traspaso al miembro adecuado del equipo con todo el contexto ya recogido.</p>
       </div>
     </div>
   </div>
 </section>
 
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>De un mensaje suelto a una cita en el calendario</h2>
+      <p>El mismo sistema, la misma calidad de conversación, sin importar quién escriba primero ni por dónde.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-step">
+        <div class="tl-marker">1</div>
+        <div class="tl-body">
+          <h3>Llega un mensaje</h3>
+          <p>Alguien escribe por Instagram, WhatsApp o el formulario de la web. Da igual si es texto o audio: el sistema lo entiende igual.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-marker">2</div>
+        <div class="tl-body">
+          <h3>La IA abre la conversación</h3>
+          <p>Responde en segundos con el tono de tu marca, hace las preguntas que normalmente haría tu equipo y detecta si es un lead con intención real.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-marker">3</div>
+        <div class="tl-body">
+          <h3>Queda registrado en tu panel</h3>
+          <p>Nombre, canal, necesidad, presupuesto y fase de la conversación se guardan automáticamente — tu propio CRM de leads, siempre al día, sin que nadie tenga que anotarlo a mano.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-marker">4</div>
+        <div class="tl-body">
+          <h3>Se agenda o se traspasa</h3>
+          <p>Si el lead está listo, la cita queda en tu calendario. Si necesita un humano, se traspasa con todo el historial — nadie repite lo que ya contó.</p>
+        </div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-marker">5</div>
+        <div class="tl-body">
+          <h3>Recibes el informe</h3>
+          <p>Cada semana: leads recibidos, tasa de cualificación, tiempo medio de respuesta y citas agendadas. Sin tener que pedirlo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="panel">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Panel y métricas</span>
+      <h2>Cada lead, cada conversación, en un solo sitio</h2>
+      <p>Nada vive solo dentro de un chat. Todo lo que la IA gestiona queda registrado y medible.</p>
+    </div>
+    <div class="panel-mock reveal">
+      <div class="panel-mock-head">
+        <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <span class="tag">Panel semanal · ejemplo ilustrativo</span>
+      </div>
+      <div class="panel-metrics">
+        <div class="metric-tile"><div class="val">63</div><div class="lbl">Leads recibidos</div></div>
+        <div class="metric-tile"><div class="val">71%</div><div class="lbl">Tasa de cualificación</div></div>
+        <div class="metric-tile"><div class="val">&lt;8s</div><div class="lbl">Tiempo medio de respuesta</div></div>
+        <div class="metric-tile"><div class="val">24</div><div class="lbl">Citas agendadas</div></div>
+      </div>
+      <div class="panel-table">
+        <table>
+          <thead>
+            <tr><th>Lead</th><th>Canal</th><th>Necesidad</th><th>Fase</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>L. Fernández</td><td>Instagram</td><td>Plan de entrenamiento</td><td><span class="pill booking">Booking</span></td></tr>
+            <tr><td>M. Puig</td><td>WhatsApp</td><td>Piso 3 hab. zona centro</td><td><span class="pill cualif">Cualificando</span></td></tr>
+            <tr><td>A. Ribas</td><td>Web</td><td>Consulta inicial</td><td><span class="pill nuevo">Nuevo</span></td></tr>
+            <tr><td>D. Torres</td><td>Instagram</td><td>Alquiler urgente</td><td><span class="pill booking">Booking</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="panel-caption">Datos de ejemplo para mostrar el formato del panel — cada cliente ve sus propios leads y métricas reales, actualizados en directo.</p>
+  </div>
+</section>
+
 <section id="sectores">
   <div class="wrap">
-    <div class="section-head center">
+    <div class="section-head center reveal">
       <h2>Si tu negocio capta clientes por internet, esto funciona para ti</h2>
       <p>Cada implementación se adapta al sector y al canal del cliente. La arquitectura es la misma, la conversación se ajusta a cada negocio.</p>
     </div>
-    <div class="stats">
+    <div class="stats reveal">
       <div class="stat">
         <div class="big">&#8734;</div>
         <p>Cualquier sector con captación digital</p>
@@ -198,12 +408,158 @@
   </div>
 </section>
 
-<footer id="contacto">
+<section id="proceso">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cómo empezamos</span>
+      <h2>De la primera llamada al sistema en marcha</h2>
+    </div>
+    <div class="process reveal">
+      <div class="p-step">
+        <span class="num">Paso 1</span>
+        <h3>Diagnóstico</h3>
+        <p>Vemos de dónde llegan hoy tus leads, cuántos son y dónde se están perdiendo respuestas.</p>
+      </div>
+      <div class="p-step">
+        <span class="num">Paso 2</span>
+        <h3>Configuración a medida</h3>
+        <p>Montamos la conversación, las preguntas de cualificación y la conexión con tu calendario.</p>
+      </div>
+      <div class="p-step">
+        <span class="num">Paso 3</span>
+        <h3>Puesta en marcha</h3>
+        <p>El sistema empieza a responder en tu canal real. Nosotros gestionamos toda la parte técnica.</p>
+      </div>
+      <div class="p-step">
+        <span class="num">Paso 4</span>
+        <h3>Seguimiento</h3>
+        <p>Informe semanal y ajustes continuos según cómo responden tus leads reales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planes">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Planes</span>
+      <h2>Un plan según tu volumen de leads</h2>
+      <p>Sin cuotas ocultas ni permanencia forzada. Cuéntanos cuántos leads recibes y te decimos qué plan encaja.</p>
+    </div>
+    <div class="plans reveal">
+      <div class="plan">
+        <h3>Starter</h3>
+        <p class="tagline">Para empezar a automatizar un canal</p>
+        <ul>
+          <li>Un canal de entrada (Instagram, WhatsApp o web)</li>
+          <li>Cualificación conversacional con IA</li>
+          <li>Agenda directa en tu calendario</li>
+          <li>Panel de leads en tiempo real</li>
+        </ul>
+        <a class="plan-cta" href="#contacto">Hablar de mi caso</a>
+      </div>
+      <div class="plan highlight">
+        <h3>Growth</h3>
+        <p class="tagline">Para negocios con varios canales activos</p>
+        <ul>
+          <li>Todo lo de Starter</li>
+          <li>Multicanal (texto y audio)</li>
+          <li>Traspaso a equipo con contexto completo</li>
+          <li>Informe semanal de métricas</li>
+        </ul>
+        <a class="plan-cta" href="#contacto">Hablar de mi caso</a>
+      </div>
+      <div class="plan">
+        <h3>Scale</h3>
+        <p class="tagline">Para redes, franquicias y varias oficinas</p>
+        <ul>
+          <li>Todo lo de Growth</li>
+          <li>Gestión completa de canales por nuestro equipo</li>
+          <li>Integraciones a medida</li>
+          <li>Seguimiento dedicado</li>
+        </ul>
+        <a class="plan-cta" href="#contacto">Hablar de mi caso</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Antes de escribirnos</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details>
+        <summary>¿Reemplaza a mi equipo comercial?</summary>
+        <p>No. Se encarga de la parte repetitiva — responder rápido y cualificar — y traspasa a una persona real en el momento adecuado, con todo el contexto ya recogido. Tu equipo deja de perder tiempo en leads que no van a ningún sitio.</p>
+      </details>
+      <details>
+        <summary>¿Cuánto se tarda en tener el sistema funcionando?</summary>
+        <p>Depende del canal y de la complejidad de tu proceso de venta, pero la configuración inicial suele estar lista en cuestión de días, no de meses. Lo vemos juntos en el diagnóstico.</p>
+      </details>
+      <details>
+        <summary>¿Funciona en mi sector aunque no sea fitness ni inmobiliaria?</summary>
+        <p>Sí. La arquitectura es la misma para cualquier negocio que capte clientes por internet — lo que cambia es la conversación y las preguntas de cualificación, que adaptamos a tu caso.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa con los datos de mis leads?</summary>
+        <p>Cada cliente tiene sus propios datos, separados del resto. No se comparten entre clientes ni se usan para nada distinto de tu propio panel y tus métricas.</p>
+      </details>
+      <details>
+        <summary>¿Necesito tener ya un CRM o herramienta de agenda?</summary>
+        <p>No. El panel de leads viene incluido, y la agenda se conecta directamente a tu calendario. Si ya usas otra herramienta, también podemos integrarla.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2>Cuéntanos cómo te llegan hoy tus leads</h2>
+      <p>Sin compromiso. Una conversación de 15 minutos basta para saber si esto encaja contigo.</p>
+    </div>
+    <div class="contact-grid reveal">
+      <a class="contact-card" href="mailto:daniel.massatorii@gmail.com?subject=Quiero%20saber%20m%C3%A1s%20sobre%20Massatorii">
+        <div class="icon">✉</div>
+        <h3>Email</h3>
+        <p>daniel.massatorii@gmail.com</p>
+      </a>
+      <a class="contact-card disabled" href="#" aria-disabled="true">
+        <div class="icon">📞</div>
+        <h3>Teléfono</h3>
+        <p>Próximamente</p>
+      </a>
+      <a class="contact-card disabled" href="#" aria-disabled="true">
+        <div class="icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Próximamente</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
   <div class="wrap">
     <p>Massatorii — Sistemas de IA para captación y agendado. España.</p>
     <a href="mailto:daniel.massatorii@gmail.com">daniel.massatorii@gmail.com</a>
   </div>
 </footer>
+
+<script>
+  var els = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.12});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+</script>
 
 </body>
 </html>
