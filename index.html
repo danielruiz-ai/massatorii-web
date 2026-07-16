@@ -85,7 +85,7 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo{display:flex; align-items:center;}
-  .logo img{height:30px; width:auto; display:block;}
+  .logo img{height:48px; width:auto; display:block;}
   .logo-vertical{height:64px; width:auto; display:block;}
   .nav-links{display:flex; gap:34px; font-size:14.5px; color:var(--paper-dim);}
   .nav-links a:hover{color:var(--paper);}
@@ -303,7 +303,7 @@
   }
   .pill:hover{border-color:var(--line-strong); color:var(--paper);}
   .pill.active{
-    background:var(--signal); border-color:var(--signal); color:var(--ink); font-weight:600;
+    background:var(--signal); border-color:var(--red); color:var(--ink); font-weight:600;
   }
   .sector-tag{
     font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
@@ -391,7 +391,7 @@
     background:none; border:none; padding:10px 20px; border-radius:100px; cursor:pointer;
     transition:all .2s ease;
   }
-  .toggle-btn.active{background:var(--signal); color:var(--ink); font-weight:600;}
+  .toggle-btn.active{background:var(--red); color:#fff; font-weight:600;}
   .price-alt{
     display:block; text-align:center; margin-top:12px;
     font-size:12.5px; color:var(--muted); text-decoration:underline; text-underline-offset:3px;
@@ -404,15 +404,15 @@
     padding:34px 28px; display:flex; flex-direction:column;
   }
   .price-card.featured{
-    border-color:var(--signal);
-    background:linear-gradient(180deg, rgba(217,164,65,0.10), var(--surface) 40%);
+    border-color:var(--red);
+    background:linear-gradient(180deg, rgba(215,52,39,0.10), var(--surface) 40%);
     position:relative;
   }
   .price-card.featured::before{
     content:"MÁS ELEGIDO";
     position:absolute; top:-11px; left:28px;
     font-family:var(--mono); font-size:10px; letter-spacing:0.08em;
-    background:var(--signal); color:var(--ink); padding:4px 10px; border-radius:100px;
+    background:var(--red); color:#fff; padding:4px 10px; border-radius:100px;
   }
   .price-name{font-family:var(--mono); font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em;}
   .price-amount{margin-top:14px; font-family:var(--display); font-size:38px; color:var(--paper);}
@@ -847,7 +847,7 @@
           <div>Dashboard de métricas completo</div>
           <div>Ajustes de conversación incluidos</div>
         </div>
-        <a href="https://buy.stripe.com/aFa4gAcPcaPCaQx6X3fIs01" target="_blank" rel="noopener" class="btn-gold">Suscribirme ahora →</a>
+        <a href="https://buy.stripe.com/aFa4gAcPcaPCaQx6X3fIs01" target="_blank" rel="noopener" class="btn-primary">Suscribirme ahora →</a>
         <a href="#contacto" class="price-alt">¿Dudas antes de pagar? Hablemos</a>
       </div>
       <div class="price-card reveal">
@@ -892,7 +892,7 @@
           <div>Dashboard de métricas completo</div>
           <div>Varias oficinas o agentes</div>
         </div>
-        <a href="https://buy.stripe.com/3cI6oI4iGf5Sf6NepvfIs04" target="_blank" rel="noopener" class="btn-gold">Suscribirme ahora →</a>
+        <a href="https://buy.stripe.com/3cI6oI4iGf5Sf6NepvfIs04" target="_blank" rel="noopener" class="btn-primary">Suscribirme ahora →</a>
         <a href="#contacto" class="price-alt">¿Dudas antes de pagar? Hablemos</a>
       </div>
       <div class="price-card reveal">
