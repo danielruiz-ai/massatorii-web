@@ -85,7 +85,7 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo{display:flex; align-items:center;}
-  .logo img{height:48px; width:auto; display:block;}
+  .logo img{height:60px; width:auto; display:block;}
   .logo-vertical{height:64px; width:auto; display:block;}
   .nav-links{display:flex; gap:34px; font-size:14.5px; color:var(--paper-dim);}
   .nav-links a:hover{color:var(--paper);}
@@ -357,7 +357,7 @@
 
   /* ---------- CASES ---------- */
   .case-scroll{
-    display:flex; gap:20px; overflow-x:auto; padding:6px 4px 20px;
+    display:flex; gap:20px; padding:6px 4px 20px; width:max-content; animation:caseMarquee 44s linear infinite;
     scroll-snap-type:x proximity;
     -ms-overflow-style:none; scrollbar-width:none;
   }
@@ -384,7 +384,7 @@
   .case-cta:hover{border-bottom-color:var(--signal);}
   .case-note{margin-top:24px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--muted); font-style:italic;}
 
-  /* ---------- PRICING ---------- */
+  .case-scroll:hover{animation-play-state:paused;} @keyframes caseMarquee{from{transform:translateX(0)} to{transform:translateX(-50%)}} #casos .wrap{overflow:hidden;} /* ---------- PRICING ---------- */
   .price-toggle{display:inline-flex; background:var(--surface); border:1px solid var(--line); border-radius:100px; padding:4px; margin-bottom:36px;}
   .toggle-btn{
     font-family:var(--mono); font-size:13px; color:var(--muted);
@@ -456,7 +456,7 @@
   .final-note a{color:var(--paper-dim); text-decoration:underline; text-underline-offset:3px;}
   .final-note a:hover{color:var(--signal);}
 
-  /* ---------- FOOTER ---------- */
+  .fachada-photo{margin-top:32px; display:flex; flex-direction:column; align-items:center; gap:10px;} .fachada-photo img{max-width:220px; width:100%; border-radius:14px; border:1px solid var(--line-strong); display:block;} .fachada-photo span{font-family:var(--mono); font-size:11.5px; color:var(--muted);} /* ---------- FOOTER ---------- */
   footer{padding:64px 0 40px; border-top:1px solid var(--line); margin-top:60px;}
   .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px;}
   .footer-brand .logo{margin-bottom:12px;}
@@ -495,7 +495,7 @@
 </header>
 
 <section class="hero">
-  <img src="logo-icon.png" alt="" class="hero-watermark" aria-hidden="true">
+  
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow">Respuesta a leads · Cualquier canal</div>
@@ -544,12 +544,12 @@
   <div class="wrap channels-inner">
     <span class="channels-label">Conectamos con el canal que ya usas:</span>
     <div class="channels-list">
-      <span>WhatsApp</span><span class="dot">·</span>
-      <span>Instagram</span><span class="dot">·</span>
-      <span>Email</span><span class="dot">·</span>
-      <span>Formularios web</span><span class="dot">·</span>
-      <span>Messenger</span><span class="dot">·</span>
-      <span>SMS</span>
+      <span><img src="https://cdn.simpleicons.org/whatsapp/BDBEC1" alt="WhatsApp" width="20" height="20"></span><span class="dot">·</span>
+      <span><img src="https://cdn.simpleicons.org/instagram/BDBEC1" alt="Instagram" width="20" height="20"></span><span class="dot">·</span>
+      <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#BDBEC1" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg></span><span class="dot">·</span>
+      <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#BDBEC1" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><span class="dot">·</span>
+      <span><img src="https://cdn.simpleicons.org/messenger/BDBEC1" alt="Messenger" width="20" height="20"></span><span class="dot">·</span>
+      <span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#BDBEC1" stroke-width="1.6"><path d="M4 4h16v12H8l-4 4V4z"></path><circle cx="8" cy="10" r="0.8" fill="#BDBEC1"></circle><circle cx="12" cy="10" r="0.8" fill="#BDBEC1"></circle><circle cx="16" cy="10" r="0.8" fill="#BDBEC1"></circle></svg></span>
     </div>
   </div>
 </div>
@@ -803,12 +803,12 @@
         <a href="#contacto" class="case-cta">Quiero algo así →</a>
       </div>
     </div>
-    <div class="case-hint">← desliza para ver más →</div>
+    
     <div class="case-note reveal">Ejemplos ilustrativos de los tipos de caso que resolvemos, basados en clientes reales de Massatorii. Cifras y testimonios concretos, disponibles bajo petición en la llamada de diagnóstico — no publicamos citas ni datos inventados.</div>
   </div>
 </section>
 
-<section id="precios">
+<div class="channels-strip"><div class="wrap channels-inner"><span class="channels-label">Las herramientas con las que lo construimos:</span><div class="channels-list"><img src="https://cdn.simpleicons.org/openai/BDBEC1" alt="OpenAI" width="22" height="22"><span class="dot">·</span><img src="https://cdn.simpleicons.org/n8n/BDBEC1" alt="n8n" width="22" height="22"><span class="dot">·</span><img src="https://cdn.simpleicons.org/supabase/BDBEC1" alt="Supabase" width="22" height="22"><span class="dot">·</span><img src="https://cdn.simpleicons.org/stripe/BDBEC1" alt="Stripe" width="22" height="22"><span class="dot">·</span><img src="https://cdn.simpleicons.org/googlecalendar/BDBEC1" alt="Google Calendar" width="22" height="22"></div></div></div><section id="precios">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Precios</div>
@@ -959,7 +959,7 @@
       <a href="https://wa.me/34627376940" class="btn-whatsapp">Hablar por WhatsApp →</a>
       <a href="mailto:daniel.massatorii@gmail.com" class="btn-ghost">Escribir por email</a>
     </div>
-    <div class="final-note">¿Presupuesto ajustado? Escríbenos igual — <a href="https://wa.me/34627376940">+34 627 376 940</a> · <a href="mailto:daniel.massatorii@gmail.com">daniel.massatorii@gmail.com</a></div>
+    <div class="final-note">¿Presupuesto ajustado? Escríbenos igual — <a href="https://wa.me/34627376940">+34 627 376 940</a> · <a href="mailto:daniel.massatorii@gmail.com">daniel.massatorii@gmail.com</a></div><div class="fachada-photo"><img src="fachada.png" alt="Letrero de Massatorii en nuestra sede" loading="lazy"><span>Así nos vas a encontrar</span></div>
   </div>
 </section>
 
@@ -1006,6 +1006,7 @@
   });
 
   // Sector pills — clickable toggle
+  const caseScrollEl = document.querySelector('.case-scroll'); if(caseScrollEl){ Array.from(caseScrollEl.children).map(c=>c.cloneNode(true)).forEach(c=>caseScrollEl.appendChild(c)); }
   document.querySelectorAll('.pill').forEach(p=>{
     p.addEventListener('click', ()=> p.classList.toggle('active'));
   });
